@@ -17,19 +17,18 @@ public class Application {
         if (isStarted) return;
         isStarted = true;
 
-        try(PrintStream out = System.out;
-            Scanner in = new Scanner(System.in)) {
+        try(Scanner in = new Scanner(System.in)) {
             Dictionary dict = new DictionaryImpl();
 
-            out.println("Hello! What can I do for you?\n");
-            launchMainLoop(out, in, dict);
+            System.out.println("Hello! What can I do for you?\n");
+            launchMainLoop(in, dict);
         }
     }
 
-    private void launchMainLoop(PrintStream out, Scanner in, Dictionary dict) {
+    private void launchMainLoop(Scanner in, Dictionary dict) {
         while (true) {
             try {
-                out.println(
+                System.out.println(
                         """
                         Available options:
                         0 - To exit the program
@@ -40,15 +39,15 @@ public class Application {
                 );
 
                 var option = new OptionSelection(in.nextLine(), 0, 2).create(dict);
-                out.println(option.getInstructions());
+                System.out.println(option.getInstructions());
                 if (option instanceof CloseAppRequestOption) {
                     break;
                 }
 
-                out.println(option.process(in.nextLine()));
-                out.println();
+                System.out.println(option.process(in.nextLine()));
+                System.out.println();
             } catch (InvalidInputException e) {
-                out.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
