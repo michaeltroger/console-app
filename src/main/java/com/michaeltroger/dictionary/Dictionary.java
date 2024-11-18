@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface Dictionary {
 
     void addEntry(DictionaryEntry entry);
-    Optional<DictionaryEntry> findQuestion(Question question);
+    Optional<DictionaryEntry> findEntry(Question question);
 }

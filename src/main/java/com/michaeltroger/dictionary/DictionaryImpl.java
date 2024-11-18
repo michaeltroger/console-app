@@ -17,7 +17,7 @@ public class DictionaryImpl implements Dictionary {
     }
 
     @Override
-    public Optional<DictionaryEntry> findQuestion(Question question) {
+    public Optional<DictionaryEntry> findEntry(Question question) {
         return entries.stream()
                 .filter(entry -> entry.question().equals(question))
                 .findFirst();

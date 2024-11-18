@@ -15,8 +15,8 @@ public class DictionaryTest {
     @Test
     public void testValueNotAvailable() {
         Dictionary dict = new DictionaryImpl();
-        var foundQuestion = dict.findQuestion(new Question("What?"));
-        Assertions.assertFalse(foundQuestion.isPresent());
+        var entry = dict.findEntry(new Question("What?"));
+        Assertions.assertFalse(entry.isPresent());
     }
 
     @Test
@@ -27,8 +27,8 @@ public class DictionaryTest {
                 List.of(new Answer("Tom"))
         );
         dict.addEntry(entry);
-        var foundQuestion = dict.findQuestion(new Question("What?"));
-        Assertions.assertTrue(foundQuestion.isPresent());
-        Assertions.assertEquals(entry, foundQuestion.get());
+        var foundEntry = dict.findEntry(new Question("What?"));
+        Assertions.assertTrue(foundEntry.isPresent());
+        Assertions.assertEquals(entry, foundEntry.get());
     }
 }

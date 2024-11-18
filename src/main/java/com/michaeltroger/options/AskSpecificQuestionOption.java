@@ -23,10 +23,10 @@ public class AskSpecificQuestionOption implements Option {
     @Override
     public String process(String input) throws InvalidInputException {
         var inputQuestion = new Question(input);
-        var foundQuestion = dict.findQuestion(inputQuestion);
+        var entry = dict.findEntry(inputQuestion);
         String response;
-        if (foundQuestion.isPresent()) {
-            response = String.join("\n", foundQuestion.get().answers().stream().map(Answer::text).toList());
+        if (entry.isPresent()) {
+            response = String.join("\n", entry.get().answers().stream().map(Answer::text).toList());
         } else {
             response = DEFAULT_ANSWER;
         }

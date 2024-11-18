@@ -58,7 +58,7 @@ public class AddQuestionWithAnswersOptionTest {
                 () ->  option.process("Is it? \"yes\"")
         );
 
-        Assertions.assertEquals("Is it?", dict.findQuestion(new Question("Is it?")).get().question().toString());
-        Assertions.assertEquals("[yes]", dict.findQuestion(new Question("Is it?")).get().answers().toString());
+        Assertions.assertEquals("Is it?", dict.findEntry(new Question("Is it?")).get().question().toString());
+        Assertions.assertEquals("[yes]", dict.findEntry(new Question("Is it?")).get().answers().toString());
     }
 }

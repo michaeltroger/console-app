@@ -1,6 +1,6 @@
-package entities;
+package optionselection;
 
-import com.michaeltroger.entities.OptionSelection;
+import com.michaeltroger.optionselection.OptionSelectionImpl;
 import com.michaeltroger.exception.InvalidInputException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ public class OptionSelectionTest {
     public void testNullValueNotAllowed() {
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> new OptionSelection(null, 0, 2)
+                () -> new OptionSelectionImpl().create(null, null)
         );
 
         Assertions.assertEquals("Chosen mode must be a number.", thrown.getMessage());
@@ -22,7 +22,7 @@ public class OptionSelectionTest {
     public void testValueNotWithinRange() {
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> new OptionSelection("3", 0, 2)
+                () -> new OptionSelectionImpl().create("3", null)
         );
 
         Assertions.assertEquals("Chosen mode must be one of the available options.", thrown.getMessage());
@@ -32,7 +32,7 @@ public class OptionSelectionTest {
     public void testEmptyValueNotAllowed() {
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> new OptionSelection("", 0, 2)
+                () -> new OptionSelectionImpl().create("", null)
         );
 
         Assertions.assertEquals("Chosen mode must be a number.", thrown.getMessage());
@@ -41,7 +41,7 @@ public class OptionSelectionTest {
     @Test
     public void testValueValid() {
         Assertions.assertDoesNotThrow(
-                () -> new OptionSelection("2", 0, 2)
+                () -> new OptionSelectionImpl().create("2", null)
         );
     }
 }
