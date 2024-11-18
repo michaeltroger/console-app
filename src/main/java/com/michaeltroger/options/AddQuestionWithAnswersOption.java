@@ -12,12 +12,6 @@ import java.util.stream.Stream;
 
 public class AddQuestionWithAnswersOption implements Option {
 
-    private final Dictionary dict;
-
-    public AddQuestionWithAnswersOption(Dictionary dict) {
-        this.dict = dict;
-    }
-
     @Override
     public String getInstructions() {
         return """
@@ -27,7 +21,7 @@ public class AddQuestionWithAnswersOption implements Option {
     }
 
     @Override
-    public String process(String input) throws InvalidInputException {
+    public String process(String input, Dictionary dict) throws InvalidInputException {
         var entry = parseInput(input);
         dict.addEntry(entry);
         return "Added " + entry + " to dictionary.";

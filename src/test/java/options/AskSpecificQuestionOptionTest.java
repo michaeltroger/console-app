@@ -17,11 +17,11 @@ public class AskSpecificQuestionOptionTest {
     @Test
     public void testNoInput() {
         Dictionary dict = new DictionaryImpl();
-        var option = new AskSpecificQuestionOption(dict);
+        var option = new AskSpecificQuestionOption();
 
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () ->  option.process("")
+                () ->  option.process("", dict)
         );
 
         Assertions.assertEquals("Question must not be empty", thrown.getMessage());
@@ -30,8 +30,8 @@ public class AskSpecificQuestionOptionTest {
     @Test
     public void testDefaultAnswer() {
         Dictionary dict = new DictionaryImpl();
-        var option = new AskSpecificQuestionOption(dict);
-        var result = option.process("Is it?");
+        var option = new AskSpecificQuestionOption();
+        var result = option.process("Is it?", dict);
 
         Assertions.assertEquals("the answer to life, universe and everything is 42", result);
     }
@@ -40,8 +40,8 @@ public class AskSpecificQuestionOptionTest {
     public void testValidAnswer() {
         Dictionary dict = new DictionaryImpl();
         dict.addEntry(new DictionaryEntry(new Question("Is it?"), List.of(new Answer("Tom"), new Answer("Nadine"))));
-        var option = new AskSpecificQuestionOption(dict);
-        var result = option.process("Is it?");
+        var option = new AskSpecificQuestionOption();
+        var result = option.process("Is it?", dict);
 
         Assertions.assertEquals("""
                 Tom

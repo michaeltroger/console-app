@@ -30,13 +30,13 @@ public class Application {
         while (true) {
             try {
                 System.out.println(optionSelection.getOptions());
-                var option = optionSelection.create(in.nextLine(), dict);
+                var option = optionSelection.create(in.nextLine());
 
                 System.out.println(option.getInstructions());
                 if (option instanceof CloseAppRequestOption) {
                     break;
                 }
-                System.out.println(option.process(in.nextLine()));
+                System.out.println(option.process(in.nextLine(), dict));
                 System.out.println();
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());

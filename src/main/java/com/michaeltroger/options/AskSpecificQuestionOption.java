@@ -9,19 +9,13 @@ public class AskSpecificQuestionOption implements Option {
 
     private static final String DEFAULT_ANSWER = "the answer to life, universe and everything is 42";
 
-    private final Dictionary dict;
-
-    public AskSpecificQuestionOption(Dictionary dict) {
-        this.dict = dict;
-    }
-
     @Override
     public String getInstructions() {
         return "Enter a specific question:";
     }
 
     @Override
-    public String process(String input) throws InvalidInputException {
+    public String process(String input, Dictionary dict) throws InvalidInputException {
         var inputQuestion = new Question(input);
         var entry = dict.findEntry(inputQuestion);
         String response;

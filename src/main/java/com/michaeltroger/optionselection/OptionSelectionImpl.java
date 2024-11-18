@@ -1,6 +1,5 @@
 package com.michaeltroger.optionselection;
 
-import com.michaeltroger.dictionary.Dictionary;
 import com.michaeltroger.exception.InvalidInputException;
 import com.michaeltroger.options.AddQuestionWithAnswersOption;
 import com.michaeltroger.options.AskSpecificQuestionOption;
@@ -24,7 +23,7 @@ public class OptionSelectionImpl implements OptionSelection {
     }
 
     @Override
-    public Option create(String input, Dictionary dict) {
+    public Option create(String input) {
         int inputAsNumber;
         try {
             inputAsNumber = Integer.parseInt(input);
@@ -41,8 +40,8 @@ public class OptionSelectionImpl implements OptionSelection {
 
         return switch (mode) {
             case 0 -> new CloseAppRequestOption();
-            case 1 -> new AskSpecificQuestionOption(dict);
-            case 2 -> new AddQuestionWithAnswersOption(dict);
+            case 1 -> new AskSpecificQuestionOption();
+            case 2 -> new AddQuestionWithAnswersOption();
             default -> throw new IllegalArgumentException("Should never happen since validation happens before.");
         };
     }

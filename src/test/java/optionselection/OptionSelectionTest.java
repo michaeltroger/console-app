@@ -12,7 +12,7 @@ public class OptionSelectionTest {
     public void testNullValueNotAllowed() {
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> new OptionSelectionImpl().create(null, null)
+                () -> new OptionSelectionImpl().create(null)
         );
 
         Assertions.assertEquals("Chosen mode must be a number.", thrown.getMessage());
@@ -22,7 +22,7 @@ public class OptionSelectionTest {
     public void testValueNotWithinRange() {
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> new OptionSelectionImpl().create("3", null)
+                () -> new OptionSelectionImpl().create("3")
         );
 
         Assertions.assertEquals("Chosen mode must be one of the available options.", thrown.getMessage());
@@ -32,7 +32,7 @@ public class OptionSelectionTest {
     public void testEmptyValueNotAllowed() {
         InvalidInputException thrown = Assertions.assertThrows(
                 InvalidInputException.class,
-                () -> new OptionSelectionImpl().create("", null)
+                () -> new OptionSelectionImpl().create("")
         );
 
         Assertions.assertEquals("Chosen mode must be a number.", thrown.getMessage());
@@ -41,7 +41,7 @@ public class OptionSelectionTest {
     @Test
     public void testValueValid() {
         Assertions.assertDoesNotThrow(
-                () -> new OptionSelectionImpl().create("2", null)
+                () -> new OptionSelectionImpl().create("2")
         );
     }
 }

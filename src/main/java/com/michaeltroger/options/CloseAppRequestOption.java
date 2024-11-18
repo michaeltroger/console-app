@@ -1,5 +1,7 @@
 package com.michaeltroger.options;
 
+import com.michaeltroger.dictionary.Dictionary;
+
 public class CloseAppRequestOption implements Option {
 
     @Override
@@ -8,7 +10,7 @@ public class CloseAppRequestOption implements Option {
     }
 
     @Override
-    public String process(String input) {
+    public String process(String input, Dictionary dict) {
         return ""; // nothing to do
     }
 }
