@@ -7,17 +7,29 @@ import java.io.*;
 
 public class ApplicationTest {
 
-    private OutputStream out;
-    private PrintStream print;
+    private final InputStream systemIn = System.in;
+    private final PrintStream systemOut = System.out;
+
+    private InputStream testIn;
+    private OutputStream testOut;
+    private PrintStream testPrint;
 
     @AfterEach
     public void tearDown() {
         try {
-            out.close();
-            print.close();
-        } catch (IOException e) {
+            testIn.close();
+        } catch (IOException _) {
             // Ignore
         }
+        try {
+            testOut.close();
+        } catch (IOException _) {
+            // Ignore
+        }
+        testPrint.close();
+
+        System.setIn(systemIn);
+        System.setOut(systemOut);
     }
 
     @Test
@@ -36,7 +48,7 @@ public class ApplicationTest {
                         
                         Closing the app.
                         """,
-                out.toString()
+                testOut.toString()
         );
     }
 
@@ -70,7 +82,7 @@ public class ApplicationTest {
                         
                         Closing the app.
                         """,
-                out.toString()
+                testOut.toString()
         );
     }
 
@@ -118,7 +130,7 @@ public class ApplicationTest {
                         
                         Closing the app.
                         """,
-                out.toString()
+                testOut.toString()
         );
     }
 
@@ -149,17 +161,17 @@ public class ApplicationTest {
                       
                       Closing the app.
                       """,
-                out.toString()
+                testOut.toString()
         );
     }
 
     private Application createTestApplication(String input) {
-        var inputStream = new ByteArrayInputStream(input.getBytes());
-        out = new ByteArrayOutputStream();
-        print = new PrintStream(out);
+        testIn = new ByteArrayInputStream(input.getBytes());
+        testOut = new ByteArrayOutputStream();
+        testPrint = new PrintStream(testOut);
 
-        System.setIn(inputStream);
-        System.setOut(print);
+        System.setIn(testIn);
+        System.setOut(testPrint);
 
         return new Application();
     }
